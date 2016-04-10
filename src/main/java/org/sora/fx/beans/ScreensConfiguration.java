@@ -71,7 +71,7 @@ public class ScreensConfiguration {
         try {
             URL fxmlUrl = getClass().getResource(nameFxmlConverter(mainView));
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
-            loader.setControllerFactory(aClass -> {return controller;});
+            loader.setControllerFactory(aClass -> controller);
             Parent view = loader.load();
             return view;
         } catch (IOException e) {

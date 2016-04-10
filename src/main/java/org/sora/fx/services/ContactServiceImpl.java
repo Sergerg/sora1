@@ -5,11 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,13 +28,11 @@ public class ContactServiceImpl implements ContactService {
 
     public void loadData() {
         data.clear();
-        data.addAll(jdbcTemplate.query("SELECT * FROM contact ", new RowMapper<Contact>() {
-            public Contact mapRow(ResultSet rs, int arg1) throws SQLException {
-                return new Contact(
-                        rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getString("phone"));
-            }
+        data.addAll(jdbcTemplate.query("SELECT * FROM contact ", (rs, arg1) -> {
+            return new Contact(
+                    rs.getString("name"),
+                    rs.getString("email"),
+                    rs.getString("phone"));
         }));
     }
 

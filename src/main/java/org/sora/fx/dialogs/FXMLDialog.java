@@ -53,7 +53,7 @@ public class FXMLDialog extends Stage {
         setResizable(resizable);
         FXMLLoader loader = new FXMLLoader(fxml);
         try {
-            loader.setControllerFactory(aClass -> { return controller; });
+            loader.setControllerFactory(aClass -> controller);
             controller.setDialog(this);
             Scene s = new Scene((Parent) loader.load());
             if (css != null) {
