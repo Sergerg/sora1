@@ -11,10 +11,13 @@ import javafx.collections.ObservableList;
  */
 public interface ContactService {
 
-    public ObservableList<Contact> getData();
+    ObservableList<Contact> getData();
 
-    public void loadData();
+    void loadData();
 
-    public int addContact(Contact contact);
+    int addContact(Contact contact);
 
+    int edit(Contact contact);
+
+    int delContact(Contact contact);
 }

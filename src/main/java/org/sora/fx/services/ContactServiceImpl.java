@@ -42,5 +42,19 @@ public class ContactServiceImpl implements ContactService {
         return jdbcTemplate.update(sql, contact.getName(),
                 contact.getEmail(), contact.getPhone());
     }
+
+    @Override
+    public int edit(Contact contact) {
+        String sql = "UPDATE contact set email=?, phone=? WHERE name=?";
+        return jdbcTemplate.update(sql, contact.getEmail(),
+                contact.getPhone(), contact.getName());
+    }
+
+    @Override
+    public int delContact(Contact contact) {
+        String sql = "DELETE contact WHERE name=?";
+        return jdbcTemplate.update(sql, contact.getName());
+
+    }
 }
 

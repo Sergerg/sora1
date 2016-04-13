@@ -28,6 +28,8 @@ public class AddPersonController implements DialogController {
 
     private FXMLDialog dialog;
 
+    private boolean save;
+
     @Override
     public void setDialog(FXMLDialog dialog) {
         this.dialog = dialog;
@@ -39,7 +41,11 @@ public class AddPersonController implements DialogController {
 
     public void add() {
         Contact contact = new Contact(txtName.getText(), txtEmail.getText(), txtPhone.getText());
-        contactService.addContact(contact);
+        if (!save) {
+            contactService.addContact(contact);
+        } else {
+            contactService.edit(contact);
+        }
         //log.info("   Contact size = " + contactService.getContactList().size());
         close();
     }
@@ -55,4 +61,15 @@ public class AddPersonController implements DialogController {
         contactService.loadData();
     }
 
+    public void setContact(Contact contact) {
+        log.debug("AddPersonController.setContact()");
+        txtName.setText(contact.getName());
+        txtEmail.setText(contact.getEmail());
+        txtPhone.setText(contact.getPhone());
+        save = true;
+    }
+
+    public void setSave(boolean save) {
+        this.save = save;
+    }
 }
