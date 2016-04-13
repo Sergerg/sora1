@@ -1,8 +1,5 @@
 package org.sora.fx.controllers;
 
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.scene.control.TablePosition;
 import org.sora.fx.beans.ScreensConfiguration;
 import org.sora.fx.entity.Contact;
 import org.sora.fx.services.ContactService;
@@ -43,7 +40,7 @@ public class MainScreenController implements Initializable {
 
     public void showErrorDialog() {
         log.debug("MainScreenController.showErrorDialog() ");
-        screens.errorDialog().show();
+        screens.errorController().show("Error text", "Error title");
     }
 
     @Override
@@ -72,8 +69,7 @@ public class MainScreenController implements Initializable {
 
     public void addPerson() {
         log.debug("MainScreenController.addPerson() ");
-        screens.getPersonController().setSave(false);
-        screens.getPersonDialog().show();
+        screens.getPersonController().add();
     }
 
     public void refresh() {
@@ -92,8 +88,7 @@ public class MainScreenController implements Initializable {
 
         Contact contact = tableClient.getSelectionModel().getSelectedItem();
         if (contact != null) {
-            screens.getPersonController().setContact(contact);
-            screens.getPersonDialog().show();
+            screens.getPersonController().edit(contact);
         }
     }
 

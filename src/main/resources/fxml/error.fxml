@@ -16,11 +16,16 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.sora.fx.controllers.ErrorController">
     <children>
-        <Label text="Ошибка!" textAlignment="CENTER">
+        <!--<Label text="Ошибка!" fx:id="lblText" textAlignment="CENTER">-->
+            <!--<VBox.margin>-->
+                <!--<Insets />-->
+            <!--</VBox.margin>-->
+        <!--</Label>-->
+        <TextField fx:id="txtText" editable="false">
             <VBox.margin>
                 <Insets />
             </VBox.margin>
-        </Label>
+        </TextField>
         <Button fx:id="btn" onAction="#cancel" text="close">
             <VBox.margin>
                 <Insets top="40.0" />

@@ -1,5 +1,6 @@
 package org.sora.fx.controllers;
 
+import org.sora.fx.beans.ScreensConfiguration;
 import org.sora.fx.dialogs.FXMLDialog;
 import org.sora.fx.entity.Contact;
 import org.sora.fx.services.ContactService;
@@ -30,6 +31,9 @@ public class AddPersonController implements DialogController {
 
     private boolean save;
 
+    @Autowired
+    private ScreensConfiguration screens;
+
     @Override
     public void setDialog(FXMLDialog dialog) {
         this.dialog = dialog;
@@ -39,14 +43,14 @@ public class AddPersonController implements DialogController {
         close();
     }
 
-    public void add() {
+    public void ok() {
         Contact contact = new Contact(txtName.getText(), txtEmail.getText(), txtPhone.getText());
         if (!save) {
             contactService.addContact(contact);
         } else {
             contactService.edit(contact);
         }
-        //log.info("   Contact size = " + contactService.getContactList().size());
+        //log.debug("   Contact size = " + contactService.getContactList().size());
         close();
     }
 
@@ -61,15 +65,18 @@ public class AddPersonController implements DialogController {
         contactService.loadData();
     }
 
-    public void setContact(Contact contact) {
-        log.debug("AddPersonController.setContact()");
+    public void add() {
+        log.debug("AddPersonController.add()");
+        save = false;
+        screens.getPersonDialog().show();
+    }
+
+    public void edit(Contact contact) {
+        log.debug("AddPersonController.edit()");
         txtName.setText(contact.getName());
         txtEmail.setText(contact.getEmail());
         txtPhone.setText(contact.getPhone());
         save = true;
-    }
-
-    public void setSave(boolean save) {
-        this.save = save;
+        screens.getPersonDialog().show();
     }
 }

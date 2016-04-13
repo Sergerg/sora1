@@ -22,7 +22,7 @@ public class MainScreen extends StackPane {
         URL fxml = getClass().getResource("/fxml/main.fxml");
         FXMLLoader loader = new FXMLLoader(fxml);
         loader.getRoot();
-//        getChildren().add(VBoxBuilder.create()
+//        getChildren().ok(VBoxBuilder.create()
 //                .children(ButtonBuilder.create()
 //                        .text("Add Customer")
 //                        .onAction(new EventHandler<ActionEvent>() {
