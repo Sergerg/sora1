@@ -1,6 +1,7 @@
 package org.sora.fx.controllers;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.sora.fx.beans.ScreensConfiguration;
 import org.sora.fx.dialogs.FXMLDialog;
@@ -37,7 +38,7 @@ public class ErrorController implements DialogController {
     Button btn;
 
     @FXML
-    TextField txtText;
+    TextArea txtText;
 
     @FXML
     public void cancel() {
@@ -52,7 +53,13 @@ public class ErrorController implements DialogController {
     }
 
     public void show(String s, String s1) {
-//        txtText.setText(s);    TODO!!!
+        log.debug("show");
+        // Чтоб создать!
         screens.errorDialog().show();
+        screens.errorDialog().setTitle(s1);
+        // Теперь view создан!
+        if (txtText != null) {
+            txtText.setText(s); //    TODO!!!
+        }
     }
 }

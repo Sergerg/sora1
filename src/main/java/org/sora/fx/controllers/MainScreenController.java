@@ -34,18 +34,19 @@ public class MainScreenController implements Initializable {
     private ScreensConfiguration screens;
 
     public MainScreenController(ScreensConfiguration screens) {
-        log.debug("MainScreenController constructor");
+        log.debug("MainScreenController()");
         this.screens = screens;
     }
 
     public void showErrorDialog() {
-        log.debug("MainScreenController.showErrorDialog() ");
+        log.debug("showErrorDialog() ");
+        screens.errorController();
         screens.errorController().show("Error text", "Error title");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        log.debug("MainScreenController.initialize() ");
+        log.debug("initialize() ");
 
         // TODO AutoCreating by Contact?!
         tableClient.getColumns().clear();
@@ -68,23 +69,23 @@ public class MainScreenController implements Initializable {
     }
 
     public void addPerson() {
-        log.debug("MainScreenController.addPerson() ");
+        log.debug("addPerson() ");
         screens.getPersonController().add();
     }
 
     public void refresh() {
-        log.debug("MainScreenController.refresh() ");
+        log.debug("refresh() ");
         refreshTableClient();
     }
 
     public void refreshTableClient() {
-        log.debug("MainScreenController.refreshTableClient() ");
+        log.debug("refreshTableClient() ");
 
         contactService.loadData();
     }
 
     public void editPerson() {
-        log.debug("MainScreenController.editPerson() ");
+        log.debug("editPerson() ");
 
         Contact contact = tableClient.getSelectionModel().getSelectedItem();
         if (contact != null) {
@@ -93,7 +94,7 @@ public class MainScreenController implements Initializable {
     }
 
     public void delPerson() {
-        log.debug("MainScreenController.delPerson() ");
+        log.debug("delPerson() ");
         Contact contact = tableClient.getSelectionModel().getSelectedItem();
         if (contact != null) {
             contactService.delContact(contact);

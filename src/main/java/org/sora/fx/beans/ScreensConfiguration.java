@@ -81,7 +81,7 @@ public class ScreensConfiguration {
     }
 
     @Bean
-    @Scope("prototype") // Каждый раз новый
+    @Scope("singleton") // Каждый раз новый
     public FXMLDialog errorDialog() {
         return new FXMLDialog(
                 errorController(), // Каждый раз новый контроллер!!!
@@ -89,7 +89,7 @@ public class ScreensConfiguration {
     }
 
     @Bean
-    @Scope("prototype") // Каждый раз новый
+    @Scope("singleton") // Каждый раз новый
     public ErrorController errorController() {
         return new ErrorController();
     }

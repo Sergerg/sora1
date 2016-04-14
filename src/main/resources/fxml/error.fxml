@@ -21,11 +21,11 @@
                 <!--<Insets />-->
             <!--</VBox.margin>-->
         <!--</Label>-->
-        <TextField fx:id="txtText" editable="false">
+        <TextArea fx:id="txtText" editable="false"                         >
             <VBox.margin>
                 <Insets />
             </VBox.margin>
-        </TextField>
+        </TextArea>
         <Button fx:id="btn" onAction="#cancel" text="close">
             <VBox.margin>
                 <Insets top="40.0" />

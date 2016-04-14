@@ -1,3 +1,20 @@
-#pane {-fx-background: gray;-fx-border: dotted 1px black; -fx-border-radius: 10px;}
-#btn { -fx-color: aqua; -fx-border: dotted 1px black; -fx-border-radius: 30px;}
-/*-fx-color: blue;*/
+#pane {
+    /*-fx-background: gray;*/
+    -fx-border: dotted 1px black;
+    -fx-border-radius: 10px;
+}
+#btn {
+    /*-fx-color: aqua;*/
+    -fx-border: dotted 1px black;
+    -fx-border-radius: 30px;
+}
+
+.text-area {
+    -fx-text-alignment: center;
+    -fx-background: gray;
+    -fx-text-fill: gray;
+    -fx-prompt-text-fill: gray;
+    -fx-highlight-text-fill: gray;
+    /*-fx-border: none 0px red;*/
+    -fx-border-style: dotted;
+}
