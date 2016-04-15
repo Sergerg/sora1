@@ -1,6 +1,7 @@
 package org.sora.fx.beans;
 
 import org.sora.fx.controllers.AddPersonController;
+import org.sora.fx.controllers.ContactListController;
 import org.sora.fx.controllers.ErrorController;
 import org.sora.fx.controllers.MainScreenController;
 import org.sora.fx.dialogs.FXMLDialog;
@@ -101,10 +102,23 @@ public class ScreensConfiguration {
                 "personform", primaryStage);
     }
 
+    @Bean  //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
+    public FXMLDialog getContactListDialog() {
+        return new FXMLDialog(
+                getContactListController(), // Каждый раз новый контроллер!!!
+                "contactlistform", primaryStage);
+    }
+
     @Bean
     //@Scope("prototype")
     public AddPersonController getPersonController() {
         return new AddPersonController();
+    }
+
+    @Bean
+    //@Scope("prototype")
+    public ContactListController getContactListController() {
+        return new ContactListController();
     }
 
     // Эквивалентно выше

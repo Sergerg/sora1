@@ -9,5 +9,5 @@ import org.sora.fx.dialogs.FXMLDialog;
  * Time: 8:33
  */
 public interface DialogController {
-    public void setDialog(FXMLDialog dialog);
+    void setDialog(FXMLDialog dialog);
 }
