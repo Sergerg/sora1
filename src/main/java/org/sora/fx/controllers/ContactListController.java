@@ -40,7 +40,6 @@ public class ContactListController implements DialogController, Initializable {
     @Override
     public void setDialog(FXMLDialog dialog) {
         this.dialog = dialog;
-//        tableClient.setItems(contactService.getData());
     }
 
     @Override
