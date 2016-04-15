@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.AnchorPane?>
 
 <VBox fx:id="pane" alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.sora.fx.controllers.ErrorController">
     <children>
-        <!--<Label text="Ошибка!" fx:id="lblText" textAlignment="CENTER">-->
-            <!--<VBox.margin>-->
-                <!--<Insets />-->
-            <!--</VBox.margin>-->
-        <!--</Label>-->
         <TextArea fx:id="txtText" editable="false"                         >
             <VBox.margin>
                 <Insets />
