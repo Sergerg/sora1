@@ -17,6 +17,7 @@ import org.springframework.context.annotation.*;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,8 +34,11 @@ public class ScreensConfiguration {
     @Value("${ui.main.viewName:main}")
     private String mainView;
 
-    @Value("${ui.main.title:JavaFX приложение}")//
+    @Value("${ui.main.title:JavaFX приложение}")
     private String windowTitle;
+
+    @Value("${spring.messages.basename}") // Явно брать из настроек Spring!
+    private String mainResource;
 
     public String nameFxmlConverter(String part) {
         return "/fxml/"+part+".fxml";
@@ -71,7 +75,7 @@ public class ScreensConfiguration {
     public Parent mainForm(MainScreenController controller) throws IOException {
         try {
             URL fxmlUrl = getClass().getResource(nameFxmlConverter(mainView));
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            FXMLLoader loader = new FXMLLoader(fxmlUrl, ResourceBundle.getBundle(mainResource)); // Может как-то по-умолчанию из spring?
             loader.setControllerFactory(aClass -> controller);
             Parent view = loader.load();
             return view;

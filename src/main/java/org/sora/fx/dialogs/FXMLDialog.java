@@ -51,7 +51,7 @@ public class FXMLDialog extends Stage {
         initOwner(owner);
         initModality(modality);
         setResizable(resizable);
-        FXMLLoader loader = new FXMLLoader(fxml);
+        FXMLLoader loader = new FXMLLoader(fxml/*, TODO add resources ResourceBundle */);
         try {
             loader.setControllerFactory(aClass -> controller);
             controller.setDialog(this);

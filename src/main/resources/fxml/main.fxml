@@ -27,6 +27,6 @@
         </MenuBar>
     </top>
     <center>
-        <Label text="111"/>
+        <Label text="%mainform.mainlabel"/>
     </center>
 </BorderPane>

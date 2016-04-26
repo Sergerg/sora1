@@ -12,6 +12,7 @@ to run:
 TODO:
 - Validation
 - Ask dialog (for delete)
+- Resources
 - Auto clean form
 - Auto table columns
 - Auto field
