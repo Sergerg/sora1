@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 2:32
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
-public class AddPersonController implements DialogController {
+public class AddContactController implements DialogController {
 
-    private static final Logger log = LoggerFactory.getLogger(AddPersonController.class);
+    private static final Logger log = LoggerFactory.getLogger(AddContactController.class);
 
     @Autowired private ContactService contactService;
 
@@ -56,7 +56,7 @@ public class AddPersonController implements DialogController {
 
     // TODO - move upper, auto clean!!!
     private void close() {
-        log.debug("AddPersonController.close()");
+        log.debug("AddContactController.close()");
         txtName.clear();
         txtPhone.clear();
         txtEmail.clear();
@@ -66,13 +66,13 @@ public class AddPersonController implements DialogController {
     }
 
     public void add() {
-        log.debug("AddPersonController.add()");
+        log.debug("AddContactController.add()");
         save = false;
         screens.getPersonDialog().show();
     }
 
     public void edit(Contact contact) {
-        log.debug("AddPersonController.edit()");
+        log.debug("AddContactController.edit()");
         txtName.setText(contact.getName());
         txtEmail.setText(contact.getEmail());
         txtPhone.setText(contact.getPhone());

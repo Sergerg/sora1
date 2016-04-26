@@ -42,6 +42,6 @@ public class MainScreenController implements Initializable {
 
     public void addContacts() {
         log.debug("addContacts() ");
-        screens.getPersonController().add();
+        screens.getContactController().add();
     }
 }

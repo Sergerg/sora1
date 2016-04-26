@@ -68,7 +68,7 @@ public class ContactListController implements DialogController, Initializable {
 
     public void addPerson() {
         log.debug("addPerson() ");
-        screens.getPersonController().add();
+        screens.getContactController().add();
     }
 
     public void refresh() {
@@ -87,7 +87,7 @@ public class ContactListController implements DialogController, Initializable {
 
         Contact contact = tableClient.getSelectionModel().getSelectedItem();
         if (contact != null) {
-            screens.getPersonController().edit(contact);
+            screens.getContactController().edit(contact);
         }
     }
 
