@@ -3,7 +3,8 @@
 SpringBoot, javaFX.
 
 to run:
-gradle bootRun
+
+`gradle bootRun`
 
 
 
