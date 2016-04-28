@@ -39,6 +39,7 @@ public class ScreensConfiguration {
 
     @Value("${spring.messages.basename}") // Явно брать из настроек Spring!
     private String mainResource;
+    //public
 
     public String nameFxmlConverter(String part) {
         return "/fxml/"+part+".fxml";
@@ -89,6 +90,7 @@ public class ScreensConfiguration {
     @Scope("singleton") // Каждый раз новый
     public FXMLDialog errorDialog() {
         return new FXMLDialog(
+                mainResource,
                 errorController(), // Каждый раз новый контроллер!!!
                 "error", primaryStage); // , StageStyle.UNDECORATED
     }
@@ -102,6 +104,7 @@ public class ScreensConfiguration {
     @Bean  //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
     public FXMLDialog getPersonDialog() {
         return new FXMLDialog(
+                mainResource,
                 getContactController(), // Каждый раз новый контроллер!!!
                 "contactform", primaryStage);
     }
@@ -109,6 +112,7 @@ public class ScreensConfiguration {
     @Bean  //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
     public FXMLDialog getContactListDialog() {
         return new FXMLDialog(
+                mainResource,
                 getContactListController(), // Каждый раз новый контроллер!!!
                 "contactlistform", primaryStage);
     }

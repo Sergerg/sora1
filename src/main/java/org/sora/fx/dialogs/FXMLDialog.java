@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,19 +31,19 @@ public class FXMLDialog extends Stage {
         // for manual form - Autowired!
     }
 
-    public FXMLDialog(DialogController controller, String name, Window owner) {
-        this(controller, name, owner, Modality.WINDOW_MODAL, StageStyle.DECORATED, false);
+    public FXMLDialog(String mainResource, DialogController controller, String name, Window owner) {
+        this(mainResource, controller, name, owner, Modality.WINDOW_MODAL, StageStyle.DECORATED, false);
     }
 
-    public FXMLDialog(DialogController controller, String name, Window owner, StageStyle style) {
-        this(controller, name, owner, Modality.WINDOW_MODAL, style, false);
+    public FXMLDialog(String mainResource, DialogController controller, String name, Window owner, StageStyle style) {
+        this(mainResource, controller, name, owner, Modality.WINDOW_MODAL, style, false);
     }
 
-    public FXMLDialog(DialogController controller, String name, Window owner, Modality modality) {
-        this(controller, name, owner, modality, StageStyle.DECORATED, true);
+    public FXMLDialog(String mainResource, DialogController controller, String name, Window owner, Modality modality) {
+        this(mainResource, controller, name, owner, modality, StageStyle.DECORATED, true);
     }
 
-    public FXMLDialog(final DialogController controller, String name, Window owner, Modality modality, StageStyle style, boolean resizable) {
+    public FXMLDialog(String mainResource, final DialogController controller, String name, Window owner, Modality modality, StageStyle style, boolean resizable) {
         super(style);
         log.debug("FXMLDialog");
 
@@ -51,7 +53,15 @@ public class FXMLDialog extends Stage {
         initOwner(owner);
         initModality(modality);
         setResizable(resizable);
-        FXMLLoader loader = new FXMLLoader(fxml/*, TODO add resources ResourceBundle */);
+        ResourceBundle bundle = null;
+        try {
+            bundle = ResourceBundle.getBundle(name);
+        } catch (MissingResourceException e) {
+            log.info("Resource not found: " + e.getMessage());
+            log.info("Try found global resources: " + mainResource);
+            bundle = ResourceBundle.getBundle(mainResource);
+        }
+        FXMLLoader loader = new FXMLLoader(fxml, bundle);
         try {
             loader.setControllerFactory(aClass -> controller);
             controller.setDialog(this);

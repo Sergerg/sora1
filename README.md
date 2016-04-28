@@ -7,6 +7,7 @@ to run:
 `gradle bootRun`
 
 
+`natif2ascii`
 
 
 TODO:
