@@ -14,6 +14,11 @@
                 <Insets bottom="5.0" />
             </VBox.margin>
         </Label>
+        <TextField fx:id="txtNick" promptText="Ник">
+            <VBox.margin>
+                <Insets bottom="5.0" />
+            </VBox.margin>
+        </TextField>
         <TextField fx:id="txtName" promptText="Имя">
             <VBox.margin>
                 <Insets bottom="5.0" />

@@ -9,14 +9,23 @@ import javafx.beans.property.SimpleStringProperty;
  * Time: 7:41
  */
 public class Contact {
+    private final SimpleStringProperty nick;
     private final SimpleStringProperty name;
     private final SimpleStringProperty email;
     private final SimpleStringProperty phone;
 
-    public Contact(String name, String email, String phone) {
+    public Contact(String nick, String name, String email, String phone) {
+        this.nick = new SimpleStringProperty(nick);
         this.name = new SimpleStringProperty(name);
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
+    }
+
+    public String getNick() {
+        return nick.get();
+    }
+    public void setNick(String nick) {
+        this.nick.set(nick);
     }
 
     public String getName() {
@@ -40,7 +49,6 @@ public class Contact {
         this.phone.set(phone);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,22 +56,20 @@ public class Contact {
 
         Contact contact = (Contact) o;
 
-        if (!name.equals(contact.name)) return false;
-        return email.equals(contact.email);
+        return nick.equals(contact.nick);
 
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + email.hashCode();
-        return result;
+        return nick.hashCode();
     }
 
     @Override
     public String toString() {
         return "Contact{" +
-                "name='" + name + '\'' +
+                "nick='" + nick + '\'' +
+                ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';

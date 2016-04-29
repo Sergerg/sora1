@@ -23,6 +23,7 @@ public class AddContactController implements DialogController {
 
     @Autowired private ContactService contactService;
 
+    @FXML TextField txtNick;
     @FXML TextField txtName;
     @FXML TextField txtPhone;
     @FXML TextField txtEmail;
@@ -44,7 +45,7 @@ public class AddContactController implements DialogController {
     }
 
     public void ok() {
-        Contact contact = new Contact(txtName.getText(), txtEmail.getText(), txtPhone.getText());
+        Contact contact = new Contact(txtNick.getText(), txtName.getText(), txtEmail.getText(), txtPhone.getText());
         if (!save) {
             contactService.addContact(contact);
         } else {
@@ -57,6 +58,7 @@ public class AddContactController implements DialogController {
     // TODO - move upper, auto clean!!!
     private void close() {
         log.debug("AddContactController.close()");
+        txtNick.clear();
         txtName.clear();
         txtPhone.clear();
         txtEmail.clear();
@@ -73,6 +75,7 @@ public class AddContactController implements DialogController {
 
     public void edit(Contact contact) {
         log.debug("AddContactController.edit()");
+        txtNick.setText(contact.getNick());
         txtName.setText(contact.getName());
         txtEmail.setText(contact.getEmail());
         txtPhone.setText(contact.getPhone());

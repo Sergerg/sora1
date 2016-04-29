@@ -30,6 +30,7 @@ public class ContactServiceImpl implements ContactService {
         data.clear();
         data.addAll(jdbcTemplate.query("SELECT * FROM contact ", (rs, arg1) -> {
             return new Contact(
+                    rs.getString("nick"),
                     rs.getString("name"),
                     rs.getString("email"),
                     rs.getString("phone"));
@@ -38,22 +39,22 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public int addContact(Contact contact) {
-        String sql = "INSERT INTO contact(name, email, phone) VALUES(?,?,?)";
-        return jdbcTemplate.update(sql, contact.getName(),
+        String sql = "INSERT INTO contact(nick, name, email, phone) VALUES(?,?,?,?)";
+        return jdbcTemplate.update(sql, contact.getNick(), contact.getName(),
                 contact.getEmail(), contact.getPhone());
     }
 
     @Override
     public int edit(Contact contact) {
-        String sql = "UPDATE contact set email=?, phone=? WHERE name=?";
-        return jdbcTemplate.update(sql, contact.getEmail(),
-                contact.getPhone(), contact.getName());
+        String sql = "UPDATE contact set name=?, email=?, phone=? WHERE nick=?";
+        return jdbcTemplate.update(sql, contact.getName(), contact.getEmail(),
+                contact.getPhone(), contact.getNick());
     }
 
     @Override
     public int delContact(Contact contact) {
-        String sql = "DELETE contact WHERE name=?";
-        return jdbcTemplate.update(sql, contact.getName());
+        String sql = "DELETE contact WHERE nick=?";
+        return jdbcTemplate.update(sql, contact.getNick());
 
     }
 }

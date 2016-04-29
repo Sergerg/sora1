@@ -48,6 +48,10 @@ public class ContactListController implements DialogController, Initializable {
 
         // TODO AutoCreating by Contact?!
         tableClient.getColumns().clear();
+        TableColumn nickCol = new TableColumn("Nick");
+        nickCol.setCellValueFactory(
+                new PropertyValueFactory<Contact,String>("nick")
+        );
         TableColumn nameCol = new TableColumn("Name");
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<Contact,String>("name")
@@ -60,7 +64,7 @@ public class ContactListController implements DialogController, Initializable {
         phoneCol.setCellValueFactory(
                 new PropertyValueFactory<Contact,String>("phone")
         );
-        tableClient.getColumns().addAll(nameCol, emailCol, phoneCol);
+        tableClient.getColumns().addAll(nickCol, nameCol, emailCol, phoneCol);
 
         // bind!
         tableClient.setItems(contactService.getData());
