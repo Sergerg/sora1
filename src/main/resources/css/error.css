@@ -11,10 +11,8 @@
 
 .text-area {
     -fx-text-alignment: center;
-    -fx-background: gray;
-    -fx-text-fill: gray;
-    -fx-prompt-text-fill: gray;
-    -fx-highlight-text-fill: gray;
+    -fx-text-fill: red;
+    -fx-highlight-text-fill: wheat;
     /*-fx-border: none 0px red;*/
     -fx-border-style: dotted;
 }

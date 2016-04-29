@@ -46,10 +46,14 @@ public class AddContactController implements DialogController {
 
     public void ok() {
         Contact contact = new Contact(txtNick.getText(), txtName.getText(), txtEmail.getText(), txtPhone.getText());
-        if (!save) {
-            contactService.addContact(contact);
-        } else {
-            contactService.edit(contact);
+        try {
+            if (!save) {
+                contactService.addContact(contact);
+            } else {
+                contactService.edit(contact);
+            }
+        } catch (Exception e) {
+            screens.errorController().show(e.getMessage(), "Error title");
         }
         //log.debug("   Contact size = " + contactService.getContactList().size());
         close();
