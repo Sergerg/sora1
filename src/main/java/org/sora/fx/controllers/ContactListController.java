@@ -11,7 +11,8 @@ import org.sora.fx.beans.ScreensConfiguration;
 import org.sora.fx.dialogs.FXMLDialog;
 import org.sora.fx.entity.Contact;
 import org.sora.fx.services.ContactService;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,10 +27,12 @@ public class ContactListController implements DialogController, Initializable {
 
     private static final Logger log = LoggerFactory.getLogger(MainScreenController.class);
 
-    @Autowired
+    //@Autowired
+    @Inject
     private ContactService contactService;
 
-    @Autowired
+    //@Autowired
+    @Inject
     private ScreensConfiguration screens;
 
     private FXMLDialog dialog;

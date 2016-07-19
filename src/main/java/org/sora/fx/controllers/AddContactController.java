@@ -8,7 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +22,9 @@ public class AddContactController implements DialogController {
 
     private static final Logger log = LoggerFactory.getLogger(AddContactController.class);
 
-    @Autowired private ContactService contactService;
+    //@Autowired
+    @Inject
+    private ContactService contactService;
 
     @FXML TextField txtNick;
     @FXML TextField txtName;
@@ -32,7 +35,8 @@ public class AddContactController implements DialogController {
 
     private boolean save;
 
-    @Autowired
+    //@Autowired
+    @Inject
     private ScreensConfiguration screens;
 
     @Override

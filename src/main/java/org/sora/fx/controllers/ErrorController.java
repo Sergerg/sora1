@@ -8,7 +8,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ErrorController implements DialogController {
     private static final Logger log = LoggerFactory.getLogger(ErrorController.class);
 
-    @Autowired
+    //@Autowired
+    @Inject
     private ScreensConfiguration screens;
 
     private FXMLDialog dialog; // не нужен, через getScene получаю доступ...

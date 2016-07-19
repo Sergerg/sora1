@@ -3,7 +3,8 @@ package org.sora.fx.services;
 import org.sora.fx.entity.Contact;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,8 @@ import org.springframework.stereotype.Service;
 //@Transactional
 public class ContactServiceImpl implements ContactService {
 
-    @Autowired
+    //@Autowired
+    @Inject
     private JdbcTemplate jdbcTemplate;
 
     private ObservableList<Contact> data = FXCollections.observableArrayList();

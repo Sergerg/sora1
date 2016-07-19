@@ -3,7 +3,8 @@ package org.sora.fx.dialogs;
 import org.sora.fx.controllers.MainScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
 import java.net.URL;
 
@@ -15,7 +16,8 @@ import java.net.URL;
  */
 public class MainScreen extends StackPane {
 
-    @Autowired
+    //@Autowired
+    @Inject
     MainScreenController controller;
 
     public MainScreen() {

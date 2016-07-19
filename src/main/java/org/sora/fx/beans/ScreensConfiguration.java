@@ -12,9 +12,14 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.inject.Singleton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +32,7 @@ import java.util.ResourceBundle;
  */
 @Configuration()
 @Lazy // Чтоб наши бины грузились многим позже - по запросу!!!
+//@Singleton
 public class ScreensConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(ScreensConfiguration.class);
@@ -51,6 +57,11 @@ public class ScreensConfiguration {
     @PostConstruct
     public void init() {
         log.info("      ScreensConfiguration init()");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        log.info("      ScreensConfiguration destroy()");
     }
 
     private Stage primaryStage;
