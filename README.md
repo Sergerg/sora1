@@ -1,6 +1,6 @@
 # sora1
 
-SpringBoot, javaFX.
+SpringBoot, javaFX, some CDI (Autowired to Inject for test).
 
 to run:
 
@@ -21,6 +21,7 @@ TODO:
 
 Done:
 + ResurceBundles
-
++ Ask for exit
++ Current exit for spring beans.
 
 ...
