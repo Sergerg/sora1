@@ -65,7 +65,7 @@ public class FXMLDialog extends Stage {
         try {
             loader.setControllerFactory(aClass -> controller);
             controller.setDialog(this);
-            Scene s = new Scene((Parent) loader.load());
+            Scene s = new Scene(loader.load());
             if (css != null) {
                 s.getStylesheets().add(css.toExternalForm());
             }

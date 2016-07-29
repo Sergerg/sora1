@@ -27,7 +27,7 @@ public class MainScreenController implements Initializable {
 
     public void showErrorDialog() {
         log.debug("showErrorDialog() ");
-        screens.errorController();
+        //screens.errorController();
         screens.errorController().show("Error text", "Error title");
     }
 

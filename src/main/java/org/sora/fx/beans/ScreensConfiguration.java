@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.inject.Singleton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,7 +31,6 @@ import java.util.ResourceBundle;
  */
 @Configuration()
 @Lazy // Чтоб наши бины грузились многим позже - по запросу!!!
-//@Singleton
 public class ScreensConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(ScreensConfiguration.class);
@@ -73,6 +71,11 @@ public class ScreensConfiguration {
     public void showScreen(Parent screen) {
         Scene scene = new Scene(screen);
         scene.getStylesheets().add(getClass().getResource(nameCssConverter(mainView)).toExternalForm());
+
+        primaryStage.setOnCloseRequest(event -> {
+            log.info("primaryStage.setOnCloseRequest");
+        });
+
         primaryStage.setScene(scene);
         primaryStage.setTitle(windowTitle);
         primaryStage.show();
@@ -97,8 +100,8 @@ public class ScreensConfiguration {
         }
     }
 
-    @Bean
-    @Scope("singleton") // Каждый раз новый
+    @Bean(destroyMethod="")
+    //@Scope("singleton")
     public FXMLDialog errorDialog() {
         return new FXMLDialog(
                 mainResource,
@@ -107,12 +110,14 @@ public class ScreensConfiguration {
     }
 
     @Bean
-    @Scope("singleton") // Каждый раз новый
+    //@Scope("singleton")
     public ErrorController errorController() {
+        log.debug("ErrorController errorController()");
         return new ErrorController();
     }
 
-    @Bean  //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
+    @Bean(destroyMethod="")
+    //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
     public FXMLDialog getPersonDialog() {
         return new FXMLDialog(
                 mainResource,
@@ -120,7 +125,8 @@ public class ScreensConfiguration {
                 "contactform", primaryStage);
     }
 
-    @Bean  //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
+    @Bean(destroyMethod="")
+    //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
     public FXMLDialog getContactListDialog() {
         return new FXMLDialog(
                 mainResource,

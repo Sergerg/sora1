@@ -37,6 +37,7 @@ public class Application extends javafx.application.Application {
         ScreensConfiguration screens = context.getBean(ScreensConfiguration.class);
         screens.setPrimaryStage(primaryStage);
         screens.showScreen(screens.mainForm(screens.mainScreenController()));
+        log.debug("End start.");
     }
 
 }
