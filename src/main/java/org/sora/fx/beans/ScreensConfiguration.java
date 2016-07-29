@@ -142,20 +142,20 @@ public class ScreensConfiguration {
     }
 
     @Bean(destroyMethod="")
-    //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
+    //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз (по-умолч.)!
     public FXMLDialog getPersonDialog() {
         return new FXMLDialog(
                 mainResource,
-                getContactController(), // Каждый раз новый контроллер!!!
+                getContactController(), // Каждый раз новый контроллер, если @Scope("prototype")!!!
                 "contactform", primaryStage);
     }
 
     @Bean(destroyMethod="")
-    //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз!
+    //@Scope("prototype") // - нет ошибки при закрытии! // Scope == singleton - только в первый раз (по-умолч.)!
     public FXMLDialog getContactListDialog() {
         return new FXMLDialog(
                 mainResource,
-                getContactListController(), // Каждый раз новый контроллер!!!
+                getContactListController(), // Каждый раз новый контроллер, если @Scope("prototype")!!!
                 "contactlistform", primaryStage);
     }
 
