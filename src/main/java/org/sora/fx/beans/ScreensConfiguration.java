@@ -1,5 +1,8 @@
 package org.sora.fx.beans;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.sora.fx.controllers.AddContactController;
 import org.sora.fx.controllers.ContactListController;
 import org.sora.fx.controllers.ErrorController;
@@ -21,6 +24,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
@@ -69,11 +74,30 @@ public class ScreensConfiguration {
     }
 
     public void showScreen(Parent screen) {
+        log.info("ScreensConfiguration showScreen()");
         Scene scene = new Scene(screen);
         scene.getStylesheets().add(getClass().getResource(nameCssConverter(mainView)).toExternalForm());
 
         primaryStage.setOnCloseRequest(event -> {
             log.info("primaryStage.setOnCloseRequest");
+
+            ResourceBundle lngBndl = ResourceBundle.getBundle(mainResource);
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            try {
+                a.setTitle(lngBndl.getString("exitconfirmation.title"));
+                a.setHeaderText(lngBndl.getString("exitconfirmation.text"));
+            } catch (MissingResourceException e) {
+                log.warn("Resource not found: " + e.getMessage());
+                a.setTitle("Confirmation");
+                a.setHeaderText("Do you really want to leave?");
+            }
+            a.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    Platform.exit();
+                } else {
+                    event.consume();
+                }
+            });
         });
 
         primaryStage.setScene(scene);
@@ -88,6 +112,7 @@ public class ScreensConfiguration {
 
     @Bean
     public Parent mainForm(MainScreenController controller) throws IOException {
+        log.info("ScreensConfiguration mainForm");
         try {
             URL fxmlUrl = getClass().getResource(nameFxmlConverter(mainView));
             FXMLLoader loader = new FXMLLoader(fxmlUrl, ResourceBundle.getBundle(mainResource)); // Может как-то по-умолчанию из spring?
